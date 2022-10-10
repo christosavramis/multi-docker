@@ -14,3 +14,10 @@ after_success:
   - docker build -t christosav/multi-nginx ./nginx
   - docker build -t christosav/multi-server ./server
   - docker build -t christosav/multi-worker ./worker
+  # Log in to the docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  #Take those images and push them to docker hub
+  - docker push christosav/multi-client
+  - docker push christosav/multi-nginx
+  - docker push christosav/multi-server
+  - docker push christosav/multi-worker
